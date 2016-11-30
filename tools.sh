@@ -1,5 +1,9 @@
 #/bin/bash 
 
+#对于函数而言，没有任何区别。仅仅是加了一个｛｝而已
+#在调用函数的时候，直接写函数的名字，空格，然后跟参数#
+#shell中的参数和c语言中不一样。c中参数的个数，从程序名（参数0）开始算。 c中参数的总数包括程序名。#
+#./tool.sh  param0  param1 ，参数的总数为2
 prepare_single_dir_data(){
 cd $1
 echo "begin generate $1"
@@ -40,8 +44,10 @@ h2b.py refer/stream_out_hex0.trc  			outStrm.bin
 chmod 666 outStrm.bin
 #h2b.py refer/  outStrmAm.bin
 
+#这里就调用了一个python脚本。
 h1_script.py refer/base_address_map.trc  refer/simulation_ctrl_unmapped.trc
 
+#判断文件是否存在，不管文件的类型。
 if [ -e "outCtx.bin" ];then
 	size=`du outCtx.bin|awk -F '' '{print $1}'`
 	if [ $size -ne 0 ];then
